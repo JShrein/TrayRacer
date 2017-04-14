@@ -57,10 +57,10 @@ class vec3:
 		return self
 
 	def __pos__(self):
-		return vec3(e[0], e[1], e[2])
+		return vec3(self.e)
 
 	def __neg__(self):
-		return vec3(-e[0],-e[1],-e[2])
+		return vec3(-self.e)
 	
 	def __add__(self, v):
 		return vec3(np.add(self.e,v.e))
@@ -76,13 +76,13 @@ class vec3:
 	def __mul__(self, elem):
 		if type(elem) == vec3:
 			return np.dot(self.e, elem.e)
-		if type(elem) == float or type(elem) == int:
+		if type(elem) == float or type(elem) == int or type(elem) == np.float32:
 			return vec3(np.multiply(elem,self.e))
 		
 		raise ValueError("Expected float or vec3, got " + str(type(elem)))
 
 	def __rmul__(self, elem):
-		if type(elem) == float or type(elem) == int:
+		if type(elem) == float or type(elem) == int or type(elem) == np.float32:
 			return vec3(np.multiply(elem,self.e))
 		raise ValueError("Expected numeric argument, got " + str(type(elem)))
 
